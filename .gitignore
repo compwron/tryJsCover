@@ -1,0 +1,7 @@
+build
+out
+gradle
+tmp
+tryJes.i*
+.gradle
+.idea
