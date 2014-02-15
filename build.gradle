@@ -16,6 +16,9 @@ sourceSets {
 
         java {
             srcDirs += 'src'
+            srcDirs += 'jescov'
+            srcDirs += 'jescov-ant'
+            srcDirs += 'jescov-jamine-junit'
         }
     }
 
@@ -40,10 +43,7 @@ dependencies {
 //    compile group: 'org.mockito', name: 'mockito-all', version: '1.8.4';
 //    compile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.+';
     compile group: 'junit', name: 'junit', version: '4.+'
-    compile files('libs/jescov-0.0.1.jar')
-    compile files('libs/jescov-ant-0.0.1.jar')
-    compile files('libs/jescov-jasmine-junit-0.0.1.jar')
-    compile files('libs/jasminejunitrunner-1.0-SNAPSHOT.jar')
+    compile fileTree(dir: 'libs', include: '**/*.jar')
 
 }
 
