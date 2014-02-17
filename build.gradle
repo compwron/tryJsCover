@@ -30,6 +30,13 @@ sourceSets {
     }
 }
 
+task jesTest(type: Test){
+//    classpath = configurations.generateMatchers
+    classpath += sourceSets.main.runtimeClasspath
+    classpath += fileTree(dir: 'js/lib', include: '**/*.*')
+    // sourceSets.main.runtimeClasspath
+}
+
 //cobertura {
 //    coverageSourceDirs = srcDirs = projects.collect { project -> project + '/src' }
 //}
@@ -45,7 +52,7 @@ dependencies {
 //    compile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.+';
     compile group: 'junit', name: 'junit', version: '4.+'
     compile fileTree(dir: 'lib', include: '**/*.*')
-    compile fileTree(dir: 'js/lib', include: '**/*.*')
+//    runtimeClasspath fileTree(dir: 'js/lib', include: '**/*.*')
     compile fileTree(dir: 'jasmine-junit-runner/target', include: '**/*.jar')
     compile 'org.apache.ant:ant:1.8.2'
     compile 'rhino:js:1.+'
@@ -53,7 +60,6 @@ dependencies {
     compile 'commons-lang:commons-lang:2.4'
 
 }
-
 
 //		<dependency>
 //		    <groupId>org.easytesting</groupId>
