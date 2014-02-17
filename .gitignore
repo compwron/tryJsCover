@@ -5,3 +5,5 @@ tmp
 tryJes.i*
 .gradle
 .idea
+coverage-report
+jescov.json.ser
