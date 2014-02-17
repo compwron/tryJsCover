@@ -8,20 +8,9 @@ dependencies {
     compile fileTree(dir: 'lib', include: '**/*.jar')
 }
 
-//task coverage << {
-//    ant.classpathref = "jescov.classes"
-//    ant.resource = "com/olabini/jescov/ant/tasks.properties"
-//}
-
 ant.importBuild 'build.xml'
 
-//task coverageFromExistingSer << {
-//    ant.taskdef(resource: 'com/olabini/jescov/ant/tasks.properties') {
-//        classpath {
-//            fileset(dir: 'lib', includes: '*.jar')
-//        }
-//    }
-//    ant.target(format: 'html') {
-//        jescov-report
-//    }
-//}
+task generateSer(type: JavaExec) {
+    main = "com.olabini.jescov.console.Runner"
+    classpath = sourceSets.main.runtimeClasspath
+}
