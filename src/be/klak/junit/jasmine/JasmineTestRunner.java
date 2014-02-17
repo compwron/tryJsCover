@@ -11,8 +11,10 @@ import org.mozilla.javascript.ContextFactory;
 import org.mozilla.javascript.NativeArray;
 import org.mozilla.javascript.tools.debugger.Main;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class JasmineTestRunner extends Runner {
@@ -111,16 +113,23 @@ public class JasmineTestRunner extends Runner {
 	}
 
 	private void resetEnvjsWindowSpace() {
-		URL blankUrl = Thread
-			.currentThread()
-			.getContextClassLoader()
-			.getResource("js/lib/blank.html");
+//		URL blankUrl = Thread
+//			.currentThread()
+//			.getContextClassLoader()
+//			.getResource("js/lib/blank.html");
+//
+//		if (blankUrl == null) {
+//			throw new IllegalStateException("Unable to load js/lib/blank.html from classpath");
+//		}
 
-		if (blankUrl == null) {
-			throw new IllegalStateException("Unable to load js/lib/blank.html from classpath");
-		}
-
-		String blankUrlStr = blankUrl.toExternalForm();
+        URL blankUrl = null;//new URL("js/lib/blank.html", new URLStreamHandler());
+        try {
+            blankUrl = new File("js/lib/blank.html").toURL();
+        } catch (MalformedURLException e) {
+            System.out.println("couldn't find blank file");
+            e.printStackTrace();
+        }
+        String blankUrlStr = blankUrl.toExternalForm();
 
 		// "file:/path/to/file" is not legal, but "file:///path/to/file" is
 		if (blankUrlStr.startsWith("file:/") && (! blankUrlStr.startsWith("file:///"))) {
