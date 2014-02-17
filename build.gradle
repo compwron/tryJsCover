@@ -12,5 +12,14 @@ ant.importBuild 'build.xml'
 
 task generateSer(type: JavaExec) {
     main = "com.olabini.jescov.console.Runner"
+    args = ['Song.js']
     classpath = sourceSets.main.runtimeClasspath
+}
+
+task generateCoverageAndHtml(dependsOn: generateSer) {
+//    ant.coverage
+}
+
+task cleanCoverage(type: Delete) {
+    delete 'coverage-report', 'jescov.json.ser'
 }
