@@ -16,10 +16,6 @@ task generateSer(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
-task generateCoverageAndHtml(dependsOn: generateSer) {
-//    ant.coverage
-}
-
 task cleanCoverage(type: Delete) {
     delete 'coverage-report', 'jescov.json.ser'
 }
