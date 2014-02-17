@@ -34,6 +34,8 @@ task jesTest(type: Test){
 //    classpath = configurations.generateMatchers
     classpath += sourceSets.main.runtimeClasspath
     classpath += fileTree(dir: 'js/lib', include: '**/*.*')
+//    classpath += 'js/lib/env.rhino.1.2.js'
+    sourceSets.main.runtimeClasspath += files('js/lib/*.js')
     // sourceSets.main.runtimeClasspath
 }
 

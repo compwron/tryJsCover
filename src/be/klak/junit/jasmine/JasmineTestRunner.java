@@ -1,12 +1,7 @@
 package be.klak.junit.jasmine;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-
+import be.klak.rhino.RhinoContext;
 import org.apache.commons.lang.StringUtils;
-
-import java.net.URL;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.Description;
@@ -16,7 +11,9 @@ import org.mozilla.javascript.ContextFactory;
 import org.mozilla.javascript.NativeArray;
 import org.mozilla.javascript.tools.debugger.Main;
 
-import be.klak.rhino.RhinoContext;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.net.URL;
 
 public class JasmineTestRunner extends Runner {
 
@@ -72,8 +69,11 @@ public class JasmineTestRunner extends Runner {
     protected void pre(RhinoContext context) { }
 
 	private void setUpJasmine(RhinoContext context) {
-		context.loadFromClasspath(JASMINE_LIB_DIR + "/jasmine.js");
-		context.loadFromClasspath(JASMINE_LIB_DIR + "/jasmine.delegator_reporter.js");
+//		context.loadFromClasspath(JASMINE_LIB_DIR + "/jasmine.js");
+//		context.loadFromClasspath(JASMINE_LIB_DIR + "/jasmine.delegator_reporter.js");
+
+		context.load(JASMINE_LIB_DIR + "/jasmine.js");
+		context.load(JASMINE_LIB_DIR + "/jasmine.delegator_reporter.js");
 
 		context.evalJS("jasmine.getEnv().addReporter(new jasmine.DelegatorJUnitReporter());");
 	}
